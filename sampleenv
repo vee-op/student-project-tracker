@@ -1,0 +1,3 @@
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/student-project-tracker?retryWrites=true&w=majority
+
+// your env file should be ignored by git, this is just a sample
