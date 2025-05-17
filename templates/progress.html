@@ -7,21 +7,23 @@
         Name: <input type="text" name="name" required />
         <button type="submit">Check</button>
     </form>
-    {% if progress %}
+
+    {% if progress and progress.progress %}
       <h3>Progress for {{ name }}</h3>
       <table border="1">
         <tr><th>Name</th><th>Week</th><th>Status</th></tr>
-        {% for item in progress %}
+        {% for week, status in progress.progress.items() %}
         <tr>
-          <td>{{ item.name }}</td>
-          <td>Week {{ item.week }}</td>
-          <td>{{ item.status }}</td>
+          <td>{{ name }}</td>
+          <td>{{ week }}</td>
+          <td>{{ status }}</td>
         </tr>
         {% endfor %}
       </table>
     {% elif name %}
       <p>No progress found for {{ name }}</p>
     {% endif %}
+
     <button onclick="window.location.href='/'">Home</button>
 </body>
 </html>

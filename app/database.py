@@ -10,5 +10,5 @@ read_response = vault_client.secrets.kv.v2.read_secret_version(path="student01")
 MONGO_URI = read_response['data']['data']['MONGO_URI']
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
-database = client.get_default_database()
+database = client["student_project_tracker"]
 student_collection = database.get_collection("students")
