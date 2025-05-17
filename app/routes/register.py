@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter
 from app.crud import create_student
-from app.database import student_collection
+
 
 
 router = APIRouter()
