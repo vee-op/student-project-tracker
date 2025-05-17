@@ -1,10 +1,14 @@
 import os
-from motor.motor_asyncio import AsyncIOMotorClient
-from dotenv import load_dotenv
+import motor.motor_asyncio
+import hvac
 
-load_dotenv()
+# Connect to Vault
+vault_client = hvac.Client(url='http://102.37.142.227:8200')
+vault_client.token = os.getenv("VAULT_TOKEN")
 
-MONGO_URI = os.getenv("MONGO_URI")
-client = AsyncIOMotorClient(MONGO_URI)
-db = client.cloud_native
-students_collection = db.students
+read_response = vault_client.secrets.kv.v2.read_secret_version(path="student01")
+MONGO_URI = read_response['data']['data']['MONGO_URI']
+
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
+database = client.get_default_database()
+student_collection = database.get_collection("students")
