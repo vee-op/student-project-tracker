@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.crud import update_progress
-from app.database import student_collection
+
 
 
 router = APIRouter()
