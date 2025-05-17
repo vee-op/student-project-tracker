@@ -1,4 +1,4 @@
-from app.database import students_collection
+from app.database import student_collection
 from app.models import Student
 from uuid import uuid4
 
