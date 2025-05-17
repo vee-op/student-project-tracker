@@ -1,11 +1,18 @@
-FROM python:3.11-slim
 
+FROM python:3.10
+
+# Set workdir
 WORKDIR /app
 
-COPY requirements.txt .
+# Copy project
+COPY . .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./app ./app
-COPY .env .
+# Expose app port
+EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
