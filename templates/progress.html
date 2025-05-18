@@ -13,8 +13,8 @@
         <tr><th>Name</th><th>Week</th><th>Status</th></tr>
         {% for item in progress %}
         <tr>
-          <td>{{ item.name }}</td>
-          <td>Week {{ item.week }}</td>
+          <td>{{ name }}</td>
+          <td>Week {{ item.week | replace ("week", "") }}</td>
           <td>{{ item.status }}</td>
         </tr>
         {% endfor %}

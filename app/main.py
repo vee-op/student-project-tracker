@@ -26,7 +26,12 @@ async def progress_form(request: Request):
 
 @app.post("/progress", response_class=HTMLResponse)
 async def progress_submit(request: Request, name: str = Form(...)):
-    progress = await get_student_progress(name)
+    student = await get_student_progress(name)
+    progress = []
+
+    if student and  "progress" in student:
+       for week, status in student["progress"].items():
+          progress.append({"week": week, "status": status})
     return templates.TemplateResponse("progress.html", {"request": request, "progress": progress, "name": name})
 
 @app.get("/update", response_class=HTMLResponse)
@@ -37,7 +42,7 @@ async def update_form(request: Request):
 async def update_submit(
     request: Request,
     name: str = Form(...),
-    week: int = Form(...),
+    week: str = Form(...),
     status: str = Form(...)
 ):
     await update_student_progress(name, week, status)
