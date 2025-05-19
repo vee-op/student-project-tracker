@@ -5,3 +5,4 @@ python-dotenv
 hvac
 motor
 jinja2>=3.0.0
+python-multipart
