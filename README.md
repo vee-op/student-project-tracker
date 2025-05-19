@@ -29,18 +29,18 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. Configure Environment Variables
-- Copy the `.env` file and replace it with your MongoDB URI from MongoDB Atlas:
+### 3.Db Conenctions
+- navigate to app/main and update vault ip :
 
-```
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/cloud_native?retryWrites=true&w=majority
+```export VAULT_ADDR=
+   export VAULT_TOKEN=
 ```
 
 ### 4. Run the Application Locally
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
-Visit `http://localhost:8000` to see your app in action.
+Visit `http://vmip:8000` to see your app in action.
 
 ---
 
